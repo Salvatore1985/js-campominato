@@ -31,16 +31,24 @@ Non  è necessario stampare in pagina, chi vuole può farlo, in file separato, m
 /*1*/
 
 const bombs = [];
-console.log(bombs);
 //creo un numero random da 1 a 100
 // console.log(numnerBombs);
 
+//creom un ciclo while per verificarev la lunghezza della array bombs
+while (bombs.length < 16) {
+    /*inserisco la funzione creata per generare numeri random da 1 a100*/
+    let numberBombs = getRandom(1, 100);
+    /*creo una convalida per convalidare se il numero e già presente nella array bombs*/
+    if (!bombs.includes(numberBombs)) {
+        /*inseriso i knumeri univoci dentro l'array*/
+        bombs.push(numberBombs);
+    }
 
-for (i = 0; i <= 16; i++) {
-    let numnerBombs = Math.floor(Math.random() * 100) + 1;
-    // console.table(numnerBombs);
-    bombs.push(numnerBombs);
-    // console.log(bombs);
+}
+console.log(bombs);
 
 
+
+function getRandom(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
