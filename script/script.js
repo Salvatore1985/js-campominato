@@ -24,59 +24,57 @@ Non  è necessario stampare in pagina, chi vuole può farlo, in file separato, m
 //Preparazione 
 /* 1 creo un array per contenere le bombe*/
 /* 2 creo una funzione per generare numeri random da 1 a100*/
-/* 3 creo un ciclo while per verificare la lunghezza della array bombs*/
+/* 3 creo un ciclo while per verificare la lunghezza della array bombe*/
 /* 4 chiedo al giocatore di scegliere un numero per (100-16 volte)*/
 
 
-var numeriTotali = 100;
-var numeroBombe = 16;
+var numeriTotali = 5;
+var numeroBombe = 2;
 var numeriPossibilita = numeriTotali - numeroBombe;
-const bombs = [];
-
-
-
-
-const userPlay = prompt('inserisci un numero da 1 a 100');
-
-/*creo un array dove inserisco i numeri scelti dal giocatore*/
-const numeriGiocatore = [];
-
-/*1*/
+var bombe = [1, 2];
+// console.log(bombe)
 
 
 
 
 
-/*3*/
-//creo un ciclo while per verificare la lunghezza della array bombs
-while (bombs.length < numeroBombe) {
-    /*inserisco la funzione creata per generare numeri random da 1 a100*/
-    let numberBombs = getRandom(1, numeriTotali);
-    /*creo una convalida per convalidare se il numero e già presente nella array bombs*/
-    if (!bombs.includes(numberBombs)) {
-        /*inseriso i knumeri univoci dentro l'array*/
-        bombs.push(numberBombs);
-    }
-
-}
-// console.log(bombs);
 
 
-/* 4*/
-// while (isNaN(userPlay) || userPlay.trim() === '') {
-//     userPlay = prompt('non hai unserito un numero');
+
+
+// //creo un ciclo while per verificare la lunghezza della array bombe
+// while (bombe.length < numeroBombe) {
+//     /*inserisco la funzione creata per generare numeri random da 1 a100*/
+//     var numeroCasuale = getRandom(1, numeriTotali);
+//     console.log(numeroCasuale);
+//     /*creo una convalida per convalidare se il numero e già presente nella array bombe*/
+//     if (!isInArray(numeroCasuale, bombe)) {
+//         /*inseriso i knumeri univoci dentro l'array*/
+//         bombe.push(numeroCasuale);
+//     }
+
 // }
 
-/* 5*/
 
 
+
+
+/*creo un array dove inserisco i numeri scelti dal giocatore*/
+var numeriGiocatore = [];
+
+var userPlay = getUserNumnber(1, numeriTotali);
+
+
+// while (numeriGiocatore > numeriPossibilita) {
+
+// }
 
 
 
 
 //******* FUNCTION DECLARATION */
 
-/*2*/
+
 //genera un numero random tra un minimo e il massimo
 function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -95,7 +93,35 @@ function isInArray(needle, haystack) {
 
     //creo un contatore con una condizione (continuo finche ho elementi nella array(haystack) ma ache finche trovato è falso)   )
     var i = 0;
-    while (i < haystack.length && trovato === false) {
-        i++
+    while (!trovato && i < haystack.length) {
+
+        if (needle === haystack[i]) {
+            trovato = true;
+        }
+        i++;
+    }
+
+    //porto fuori il risultato
+    return trovato;
+}
+
+function getUserNumnber(min, max) {
+    /* chiedo al giocatore di scegliere un numero da 1 a 100*/
+    var number;
+    do {
+        prompt('inserisci un numero da ' + min + 'a' + max);
+    }
+
+    while (!isNumber(number) || number < min || number > max)
+    number = prompt('inserisci un numero da ' + min + 'a' + max);
+
+
+    return parseInt(number);
+}
+
+
+function isNumber(num) {
+    if (!num || num.trim() === '' || isNaN(num)) {
+        return false;
     }
 }
