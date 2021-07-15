@@ -62,12 +62,20 @@ var bombe = [1, 2];
 /*creo un array dove inserisco i numeri scelti dal giocatore*/
 var numeriGiocatore = [];
 
-var userPlay = getUserNumnber(1, numeriTotali);
 
 
-// while (numeriGiocatore > numeriPossibilita) {
+while (numeriGiocatore.length < numeriPossibilita) {
+    /* chiedo al giocatore di scegliere un numero da 1 a 100*/
+    var userPlay = getUserNumnber(1, numeriTotali);
+    //controllo che il numero non sia nell'array delle bombe
 
-// }
+    // if (!isInArray(userPlay, numeriGiocatore)) {
+    //     console.log('non è nell\'array');
+    // }
+    if (!isInArray(userPlay, numeriGiocatore)) {
+        console.log('non è nell\'array');
+    }
+}
 
 
 
@@ -106,15 +114,10 @@ function isInArray(needle, haystack) {
 }
 
 function getUserNumnber(min, max) {
-    /* chiedo al giocatore di scegliere un numero da 1 a 100*/
     var number;
     do {
-        prompt('inserisci un numero da ' + min + 'a' + max);
-    }
-
-    while (!isNumber(number) || number < min || number > max)
-    number = prompt('inserisci un numero da ' + min + 'a' + max);
-
+        number = prompt('inserisci un numero da ' + min + 'a' + max);
+    } while (!isNumber(number) || number < min || number > max);
 
     return parseInt(number);
 }
@@ -123,5 +126,7 @@ function getUserNumnber(min, max) {
 function isNumber(num) {
     if (!num || num.trim() === '' || isNaN(num)) {
         return false;
+    } else {
+        return true;
     }
 }
