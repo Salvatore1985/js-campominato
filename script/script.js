@@ -34,47 +34,32 @@ var numeriPossibilita = numeriTotali - numeroBombe;
 var bombe = [1, 2];
 // console.log(bombe)
 
-
-
-
-
-
-
-
-
-// //creo un ciclo while per verificare la lunghezza della array bombe
-// while (bombe.length < numeroBombe) {
-//     /*inserisco la funzione creata per generare numeri random da 1 a100*/
-//     var numeroCasuale = getRandom(1, numeriTotali);
-//     console.log(numeroCasuale);
-//     /*creo una convalida per convalidare se il numero e già presente nella array bombe*/
-//     if (!isInArray(numeroCasuale, bombe)) {
-//         /*inseriso i knumeri univoci dentro l'array*/
-//         bombe.push(numeroCasuale);
-//     }
-
-// }
-
-
-
-
-
 /*creo un array dove inserisco i numeri scelti dal giocatore*/
 var numeriGiocatore = [];
+console.table(numeriGiocatore);
+
 
 
 
 while (numeriGiocatore.length < numeriPossibilita) {
     /* chiedo al giocatore di scegliere un numero da 1 a 100*/
     var userPlay = getUserNumnber(1, numeriTotali);
+    console.log(userPlay);
     //controllo che il numero non sia nell'array delle bombe
 
-    // if (!isInArray(userPlay, numeriGiocatore)) {
-    //     console.log('non è nell\'array');
-    // }
     if (!isInArray(userPlay, numeriGiocatore)) {
         console.log('non è nell\'array');
+        numeriGiocatore.push(userPlay);
+
+
+        if (bombe.includes(userPlay)) {
+            alert('sei esposo');
+            break
+        }
+
     }
+
+
 }
 
 
@@ -110,7 +95,9 @@ function isInArray(needle, haystack) {
     }
 
     //porto fuori il risultato
+    console.log(trovato);
     return trovato;
+
 }
 
 function getUserNumnber(min, max) {
