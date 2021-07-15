@@ -6,8 +6,8 @@ L'utente non può inserire 2 volte lo stesso numero
 Ogni  volta che l'utente sceglie un numero che non è presente tra le bombe, guadagna un punto e poi gli chiediamo un altro numero.
 Se il numero scelto dall'utente è presente tra i numeri bomba, la partita termina.
 Quando la partita termina, comunichiamo all'utente il suo punteggio.
-BONUS: (da fare solo se funziona tutto il resto)
-all’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali:
+à all’utente che cambia il range di numeri casuali:BONUS: (da fare solo se funziona tutto il resto)
+all’inizio il software richiede anche una difficolt
 con difficoltà 0 => tra 1 e 100
 con difficoltà 1 => tra 1 e 80
 con difficoltà 2 => tra 1 e 50
@@ -23,21 +23,35 @@ Non  è necessario stampare in pagina, chi vuole può farlo, in file separato, m
 
 //Preparazione 
 /* 1 creo un array per contenere le bombe*/
+/* 2 creo una funzione per generare numeri random da 1 a100*/
+/* 3 creo un ciclo while per verificare la lunghezza della array bombs*/
+/* 4 chiedo al giocatore di scegliere un numero per (100-16 volte)*/
+
+
+var numeriTotali = 100;
+var numeroBombe = 16;
+var numeriPossibilita = numeriTotali - numeroBombe;
+const bombs = [];
 
 
 
 
+const userPlay = prompt('inserisci un numero da 1 a 100');
+
+/*creo un array dove inserisco i numeri scelti dal giocatore*/
+const numeriGiocatore = [];
 
 /*1*/
 
-const bombs = [];
-//creo un numero random da 1 a 100
-// console.log(numnerBombs);
 
-//creom un ciclo while per verificarev la lunghezza della array bombs
-while (bombs.length < 16) {
+
+
+
+/*3*/
+//creo un ciclo while per verificare la lunghezza della array bombs
+while (bombs.length < numeroBombe) {
     /*inserisco la funzione creata per generare numeri random da 1 a100*/
-    let numberBombs = getRandom(1, 100);
+    let numberBombs = getRandom(1, numeriTotali);
     /*creo una convalida per convalidare se il numero e già presente nella array bombs*/
     if (!bombs.includes(numberBombs)) {
         /*inseriso i knumeri univoci dentro l'array*/
@@ -45,10 +59,43 @@ while (bombs.length < 16) {
     }
 
 }
-console.log(bombs);
+// console.log(bombs);
+
+
+/* 4*/
+// while (isNaN(userPlay) || userPlay.trim() === '') {
+//     userPlay = prompt('non hai unserito un numero');
+// }
+
+/* 5*/
 
 
 
+
+
+
+//******* FUNCTION DECLARATION */
+
+/*2*/
+//genera un numero random tra un minimo e il massimo
 function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+
+/**
+ * controlla che un dato elemento sia presente in un array
+ * @param{*}needle
+ * @param{*}haystack
+ * @returns{bolean}
+ */
+
+function isInArray(needle, haystack) {
+    var trovato = false;
+
+    //creo un contatore con una condizione (continuo finche ho elementi nella array(haystack) ma ache finche trovato è falso)   )
+    var i = 0;
+    while (i < haystack.length && trovato === false) {
+        i++
+    }
 }
